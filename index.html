@@ -436,6 +436,8 @@
       font-size: .8125rem; color: rgba(250,246,239,.5);
     }
 
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     /* ─── TOAST ───────────────────────────────────── */
     .toast {
       position: fixed; inset-block-end: 28px; inset-inline-start: 50%;
@@ -477,14 +479,15 @@
   <div class="container">
     <div class="header-inner">
       <div class="header-logo">
-        <span class="header-logo-text">DECORIT</span>
+        <img src="logo.png" alt="Decorit — Designing Your Dreams"
+          style="height:72px;width:auto;mix-blend-mode:multiply;" />
       </div>
       <div class="header-actions">
         <div class="lang-toggle">
           <button class="lang-btn active" onclick="setLang('he')">עב</button>
           <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
-        <a href="#lead-form" class="btn btn-primary btn-md">פתיחת חשבון</a>
+        <a href="#lead-form" class="btn btn-primary btn-md" data-he="פתיחת חשבון" data-en="Open Account">פתיחת חשבון</a>
       </div>
     </div>
   </div>
@@ -497,36 +500,35 @@
 
       <!-- Text col -->
       <div>
-        <p class="hero-eyebrow">מחירון סיטונאי בלעדי לסוחרים ומעצבים</p>
-        <h1 class="hero-h1">טקסטיל הבית<br />שהלקוחות שלכם<br />יאהבו</h1>
-        <p class="hero-body">
-          קולקציות וילונות, מצעים, מגבות ושטיחים — ישירות מהיצרן לחנות שלכם.
-          תנאים סיטונאיים, משלוח מהיר, ומלאי יציב.
-        </p>
+        <!-- D monogram — cropped from logo1024.png via CSS -->
+        <p class="hero-eyebrow" data-he="מחירון סיטונאי בלעדי לסוחרים ומעצבים" data-en="Exclusive Wholesale Catalogue for Retailers & Designers">מחירון סיטונאי בלעדי לסוחרים ומעצבים</p>
+        <h1 class="hero-h1" data-he="טקסטיל הבית<br />שהלקוחות שלכם<br />יאהבו" data-en="Home Textiles<br />Your Customers<br />Will Love">טקסטיל הבית<br />שהלקוחות שלכם<br />יאהבו</h1>
+        <p class="hero-body" data-he="קולקציות וילונות, מצעים, מגבות ושטיחים — ישירות מהיצרן לחנות שלכם. תנאים סיטונאיים, משלוח מהיר, ומלאי יציב." data-en="Curtains, bedding, towels and rugs — direct from manufacturer to your store. Wholesale terms, fast delivery, stable stock.">קולקציות וילונות, מצעים, מגבות ושטיחים — ישירות מהיצרן לחנות שלכם.
+          תנאים סיטונאיים, משלוח מהיר, ומלאי יציב.</p>
         <ul class="hero-checklist">
-          <li><i class="ph-fill ph-check-circle"></i> מינימום הזמנה נמוך — מתאים לכל גודל עסק</li>
-          <li><i class="ph-fill ph-check-circle"></i> מחירים קבועים לאורך עונה מלאה</li>
-          <li><i class="ph-fill ph-check-circle"></i> קטלוג מלא עם תמונות ומפרטים טכניים</li>
-          <li><i class="ph-fill ph-check-circle"></i> שירות לקוחות B2B ייעודי</li>
+          <li><i class="ph-fill ph-check-circle"></i> <span data-he="מינימום הזמנה נמוך — מתאים לכל גודל עסק" data-en="Low minimum order — suitable for any business size">מינימום הזמנה נמוך — מתאים לכל גודל עסק</span></li>
+          <li><i class="ph-fill ph-check-circle"></i> <span data-he="מחירים קבועים לאורך עונה מלאה" data-en="Fixed prices throughout the full season">מחירים קבועים לאורך עונה מלאה</span></li>
+          <li><i class="ph-fill ph-check-circle"></i> <span data-he="קטלוג מלא עם תמונות ומפרטים טכניים" data-en="Full catalogue with photos and technical specs">קטלוג מלא עם תמונות ומפרטים טכניים</span></li>
+          <li><i class="ph-fill ph-check-circle"></i> <span data-he="שירות לקוחות B2B ייעודי" data-en="Dedicated B2B customer service">שירות לקוחות B2B ייעודי</span></li>
         </ul>
       </div>
 
       <!-- Lead Form Card -->
       <div>
         <div class="lead-card" id="lead-form">
-          <h2 class="lead-card-title">קבלו גישה למחירון</h2>
-          <p class="lead-card-sub">מלאו פרטים ונחזור אליכם תוך יום עסקים</p>
-          <form class="form-fields" onsubmit="handleSubmit(event)">
-            <input class="input" type="text" placeholder="שם העסק" required />
-            <input class="input" type="text" placeholder="שם איש קשר" required />
-            <input class="input" type="tel" placeholder="טלפון" required />
-            <input class="input" type="email" placeholder="דואר אלקטרוני" required />
-            <input class="input" type="text" placeholder="עיר" />
+          <h2 class="lead-card-title" data-he="קבלו גישה למחירון" data-en="Get Catalogue Access">קבלו גישה למחירון</h2>
+          <p class="lead-card-sub" data-he="מלאו פרטים ונחזור אליכם תוך יום עסקים" data-en="Fill in your details and we'll get back within one business day">מלאו פרטים ונחזור אליכם תוך יום עסקים</p>
+          <form class="form-fields" onsubmit="handleSubmit(event)" id="lead-form-el">
+            <input class="input" type="text" data-ph-he="שם העסק" data-ph-en="Business Name" placeholder="שם העסק" required />
+            <input class="input" type="text" data-ph-he="שם איש קשר" data-ph-en="Contact Name" placeholder="שם איש קשר" required />
+            <input class="input" type="tel" data-ph-he="טלפון" data-ph-en="Phone" placeholder="טלפון" required />
+            <input class="input" type="email" data-ph-he="דואר אלקטרוני" data-ph-en="Email Address" placeholder="דואר אלקטרוני" required />
+            <input class="input" type="text" data-ph-he="עיר" data-ph-en="City" placeholder="עיר" />
             <label class="checkbox-row">
               <input type="checkbox" required />
-              <span>אני מאשר/ת קבלת מחירון ועדכוני קולקציות</span>
+              <span data-he="אני מאשר/ת קבלת מחירון ועדכוני קולקציות" data-en="I agree to receive the catalogue and collection updates">אני מאשר/ת קבלת מחירון ועדכוני קולקציות</span>
             </label>
-            <button type="submit" class="btn btn-primary btn-lg form-submit">
+            <button type="submit" class="btn btn-primary btn-lg form-submit" data-he="שלחו לי את המחירון" data-en="Send Me the Catalogue">
               <i class="ph ph-paper-plane-tilt"></i>
               שלחו לי את המחירון
             </button>
@@ -541,7 +543,7 @@
 <!-- ─── TRUST STRIP ─────────────────────────────── -->
 <div class="trust">
   <div class="trust-inner">
-    <span class="trust-label">מוצרינו נמכרים ב־</span>
+    <span class="trust-label" data-he="מוצרינו נמכרים ב־" data-en="Our products are sold at">מוצרינו נמכרים ב־</span>
     <div class="trust-brands">
       <span class="trust-brand">KETER HOME</span>
       <span class="trust-brand">LIVING DESIGN</span>
@@ -556,29 +558,29 @@
 <section class="benefits">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-h2">למה לעבוד עם Decorit?</h2>
-      <p class="section-sub">כל מה שצריך לניהול קולקציית טקסטיל רווחית — במקום אחד</p>
+      <h2 class="section-h2" data-he="למה לעבוד עם Decorit?" data-en="Why Work with Decorit?">למה לעבוד עם Decorit?</h2>
+      <p class="section-sub" data-he="כל מה שצריך לניהול קולקציית טקסטיל רווחית — במקום אחד" data-en="Everything you need to run a profitable textile collection — in one place">כל מה שצריך לניהול קולקציית טקסטיל רווחית — במקום אחד</p>
     </div>
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-icon"><i class="ph-fill ph-factory"></i></div>
-        <h3 class="benefit-title">ישירות מהיצרן</h3>
-        <p class="benefit-text">אנחנו יצרנים ויבואנים — ללא מתווכים. המחיר שלכם נמוך, השליטה שלכם גבוהה.</p>
+        <h3 class="benefit-title" data-he="ישירות מהיצרן" data-en="Direct from Manufacturer">ישירות מהיצרן</h3>
+        <p class="benefit-text" data-he="אנחנו יצרנים ויבואנים — ללא מתווכים. המחיר שלכם נמוך, השליטה שלכם גבוהה." data-en="We are manufacturers and importers — no middlemen. Lower cost, higher control for you.">אנחנו יצרנים ויבואנים — ללא מתווכים. המחיר שלכם נמוך, השליטה שלכם גבוהה.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon"><i class="ph-fill ph-palette"></i></div>
-        <h3 class="benefit-title">עיצוב עכשווי</h3>
-        <p class="benefit-text">קולקציות חדשות מדי עונה, עם טרנדים מובילים מאירופה ועיצוב ישראלי מקומי.</p>
+        <h3 class="benefit-title" data-he="עיצוב עכשווי" data-en="Contemporary Design">עיצוב עכשווי</h3>
+        <p class="benefit-text" data-he="קולקציות חדשות מדי עונה, עם טרנדים מובילים מאירופה ועיצוב ישראלי מקומי." data-en="New collections every season, with leading European trends and local Israeli design.">קולקציות חדשות מדי עונה, עם טרנדים מובילים מאירופה ועיצוב ישראלי מקומי.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon"><i class="ph-fill ph-truck"></i></div>
-        <h3 class="benefit-title">לוגיסטיקה מהירה</h3>
-        <p class="benefit-text">מחסן מרכזי בישראל, משלוח עד 3 ימי עסקים לכל הארץ. הזמנות דחופות תוך 24 שעות.</p>
+        <h3 class="benefit-title" data-he="לוגיסטיקה מהירה" data-en="Fast Logistics">לוגיסטיקה מהירה</h3>
+        <p class="benefit-text" data-he="מחסן מרכזי בישראל, משלוח עד 3 ימי עסקים לכל הארץ. הזמנות דחופות תוך 24 שעות." data-en="Central warehouse in Israel, delivery within 3 business days nationwide. Urgent orders within 24 hours.">מחסן מרכזי בישראל, משלוח עד 3 ימי עסקים לכל הארץ. הזמנות דחופות תוך 24 שעות.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon"><i class="ph-fill ph-handshake"></i></div>
-        <h3 class="benefit-title">תנאי B2B גמישים</h3>
-        <p class="benefit-text">מסגרת אשראי, הנחות כמות, תנאי תשלום מותאמים — נבנה יחד תכנית שמתאימה לכם.</p>
+        <h3 class="benefit-title" data-he="תנאי B2B גמישים" data-en="Flexible B2B Terms">תנאי B2B גמישים</h3>
+        <p class="benefit-text" data-he="מסגרת אשראי, הנחות כמות, תנאי תשלום מותאמים — נבנה יחד תכנית שמתאימה לכם." data-en="Credit lines, volume discounts, tailored payment terms — we'll build a plan that works for you.">מסגרת אשראי, הנחות כמות, תנאי תשלום מותאמים — נבנה יחד תכנית שמתאימה לכם.</p>
       </div>
     </div>
   </div>
@@ -588,30 +590,30 @@
 <section class="products">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-h2">מהקולקציה החדשה</h2>
-      <p class="section-sub">בחירה ממאות מוצרים — וילונות, מצעים, מגבות, שטיחים וכרים</p>
+      <h2 class="section-h2" data-he="מהקולקציה החדשה" data-en="From the New Collection">מהקולקציה החדשה</h2>
+      <p class="section-sub" data-he="בחירה ממאות מוצרים — וילונות, מצעים, מגבות, שטיחים וכרים" data-en="Choose from hundreds of products — curtains, bedding, towels, rugs and cushions">בחירה ממאות מוצרים — וילונות, מצעים, מגבות, שטיחים וכרים</p>
     </div>
     <div class="products-grid">
 
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop" alt="וילון פשתן מילאנו" loading="lazy" />
-          <span class="product-badge badge-accent">חדש</span>
+          <span class="product-badge badge-accent" data-he="חדש" data-en="New">חדש</span>
         </div>
         <div class="product-body">
-          <p class="product-category">וילונות</p>
-          <h3 class="product-name">וילון פשתן מילאנו</h3>
+          <p class="product-category" data-he="וילונות" data-en="Curtains">וילונות</p>
+          <h3 class="product-name" data-he="וילון פשתן מילאנו" data-en="Milan Linen Curtain">וילון פשתן מילאנו</h3>
         </div>
       </div>
 
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&auto=format&fit=crop" alt="סט מצעים קוטון 400 חוטים" loading="lazy" />
-          <span class="product-badge badge-warning">פופולרי</span>
+          <span class="product-badge badge-warning" data-he="פופולרי" data-en="Popular">פופולרי</span>
         </div>
         <div class="product-body">
-          <p class="product-category">מצעים</p>
-          <h3 class="product-name">סט מצעים קוטון 400</h3>
+          <p class="product-category" data-he="מצעים" data-en="Bedding">מצעים</p>
+          <h3 class="product-name" data-he="סט מצעים קוטון 400" data-en="Cotton 400 Bedding Set">סט מצעים קוטון 400</h3>
         </div>
       </div>
 
@@ -620,19 +622,19 @@
           <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop" alt="שטיח צמר מרוקו" loading="lazy" />
         </div>
         <div class="product-body">
-          <p class="product-category">שטיחים</p>
-          <h3 class="product-name">שטיח צמר מרוקו</h3>
+          <p class="product-category" data-he="שטיחים" data-en="Rugs">שטיחים</p>
+          <h3 class="product-name" data-he="שטיח צמר מרוקו" data-en="Moroccan Wool Rug">שטיח צמר מרוקו</h3>
         </div>
       </div>
 
       <div class="product-card">
         <div class="product-img-wrap">
           <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&auto=format&fit=crop" alt="סט מגבות ספא" loading="lazy" />
-          <span class="product-badge badge-accent">חדש</span>
+          <span class="product-badge badge-accent" data-he="חדש" data-en="New">חדש</span>
         </div>
         <div class="product-body">
-          <p class="product-category">מגבות</p>
-          <h3 class="product-name">סט מגבות ספא 600GSM</h3>
+          <p class="product-category" data-he="מגבות" data-en="Towels">מגבות</p>
+          <h3 class="product-name" data-he="סט מגבות ספא 600GSM" data-en="Spa Towel Set 600GSM">סט מגבות ספא 600GSM</h3>
         </div>
       </div>
 
@@ -645,11 +647,10 @@
   <div class="container">
     <div class="testimonial-inner">
       <div class="testimonial-icon"><i class="ph-fill ph-quotes"></i></div>
-      <blockquote class="testimonial-quote">
-        "מאז שעברנו ל-Decorit, זמן האספקה קוצר בחצי והמרווח שלנו גדל ב-23%. המוצרים מדברים בעד עצמם — הלקוחות שלנו פשוט אוהבים את הקולקציה."
+      <blockquote class="testimonial-quote" data-he="&quot;מאז שעברנו ל-Decorit, זמן האספקה קוצר בחצי והמרווח שלנו גדל ב-23%. המוצרים מדברים בעד עצמם — הלקוחות שלנו פשוט אוהבים את הקולקציה.&quot;" data-en="&quot;Since switching to Decorit, our lead time was cut in half and our margin grew by 23%. The products speak for themselves — our customers simply love the collection.&quot;">"מאז שעברנו ל-Decorit, זמן האספקה קוצר בחצי והמרווח שלנו גדל ב-23%. המוצרים מדברים בעד עצמם — הלקוחות שלנו פשוט אוהבים את הקולקציה."
       </blockquote>
       <p class="testimonial-attr">ריבי אלוני</p>
-      <p class="testimonial-role">בעלת רשת HOME & MORE, 4 סניפים</p>
+      <p class="testimonial-role" data-he="בעלת רשת HOME & MORE, 4 סניפים" data-en="Owner, HOME & MORE chain, 4 branches">בעלת רשת HOME & MORE, 4 סניפים</p>
     </div>
   </div>
 </section>
@@ -657,15 +658,21 @@
 <!-- ─── DARK CTA BAND ────────────────────────────── -->
 <section class="cta-band">
   <div class="container">
-    <div class="cta-inner">
-      <h2 class="cta-h2">מוכנים לפתוח חשבון סיטונאי?</h2>
-      <p class="cta-body">הצטרפו למאות סוחרים ומעצבי פנים שכבר עובדים עם Decorit. השאירו פרטים ונחזור אליכם תוך יום עסקים.</p>
+    <div class="cta-inner" style="position:relative;">
+      <!-- D monogram as decorative background mark -->
+      <img src="logo1024.png" alt=""
+        style="position:absolute;height:280px;width:auto;
+               top:50%;left:50%;transform:translate(-50%,-50%);
+               opacity:.06;filter:invert(1);
+               pointer-events:none;user-select:none;" />
+      <h2 class="cta-h2" data-he="מוכנים לפתוח חשבון סיטונאי?" data-en="Ready to Open a Wholesale Account?">מוכנים לפתוח חשבון סיטונאי?</h2>
+      <p class="cta-body" data-he="הצטרפו למאות סוחרים ומעצבי פנים שכבר עובדים עם Decorit. השאירו פרטים ונחזור אליכם תוך יום עסקים." data-en="Join hundreds of retailers and interior designers already working with Decorit. Leave your details and we'll be in touch within one business day.">הצטרפו למאות סוחרים ומעצבי פנים שכבר עובדים עם Decorit. השאירו פרטים ונחזור אליכם תוך יום עסקים.</p>
       <div class="cta-actions">
-        <a href="#lead-form" class="btn btn-primary btn-lg">
+        <a href="#lead-form" class="btn btn-primary btn-lg" data-he="פתחו חשבון עכשיו" data-en="Open Account Now">
           <i class="ph ph-paper-plane-tilt"></i>
           פתחו חשבון עכשיו
         </a>
-        <a href="mailto:trade@decorit.co.il" class="btn btn-ghost-light btn-lg">
+        <a href="mailto:info@decorit.co.il" class="btn btn-ghost-light btn-lg" data-he="דברו עם נציג" data-en="Talk to a Representative">
           דברו עם נציג
         </a>
       </div>
@@ -678,56 +685,88 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo-text">DECORIT</div>
-        <p class="footer-desc">
+        <img src="logo.png" alt="Decorit" style="height:56px;width:auto;filter:invert(1) brightness(1.8);mix-blend-mode:screen;margin-block-end:var(--space-5);" />
+        <p class="footer-desc" data-he="יצרן ויבואן טקסטיל הבית המוביל בישראל.<br />וילונות, מצעים, מגבות, שטיחים וכרים —<br />לשרשרת האספקה של הקמעונאי המודרני." data-en="Israel's leading home textile manufacturer and importer.<br />Curtains, bedding, towels, rugs and cushions —<br />for the modern retailer's supply chain.">
           יצרן ויבואן טקסטיל הבית המוביל בישראל.<br />
           וילונות, מצעים, מגבות, שטיחים וכרים —<br />
           לשרשרת האספקה של הקמעונאי המודרני.
         </p>
       </div>
       <div>
-        <p class="footer-col-head">מוצרים</p>
+        <p class="footer-col-head" data-he="מוצרים" data-en="Products">מוצרים</p>
         <ul class="footer-links">
-          <li><a href="#">וילונות ורומנים</a></li>
-          <li><a href="#">מצעים ושמיכות</a></li>
-          <li><a href="#">מגבות ורחצה</a></li>
-          <li><a href="#">שטיחים וכרים</a></li>
-          <li><a href="#">מפות שולחן</a></li>
+          <li><a href="#" data-he="וילונות ורומנים" data-en="Curtains & Romans">וילונות ורומנים</a></li>
+          <li><a href="#" data-he="מצעים ושמיכות" data-en="Bedding & Duvets">מצעים ושמיכות</a></li>
+          <li><a href="#" data-he="מגבות ורחצה" data-en="Towels & Bathware">מגבות ורחצה</a></li>
+          <li><a href="#" data-he="שטיחים וכרים" data-en="Rugs & Cushions">שטיחים וכרים</a></li>
+          <li><a href="#" data-he="מפות שולחן" data-en="Table Linens">מפות שולחן</a></li>
         </ul>
       </div>
       <div>
-        <p class="footer-col-head">לסוחרים</p>
+        <p class="footer-col-head" data-he="לסוחרים" data-en="For Retailers">לסוחרים</p>
         <ul class="footer-links">
-          <li><a href="#">פתיחת חשבון</a></li>
-          <li><a href="#">תנאי B2B</a></li>
-          <li><a href="#">לוגיסטיקה ומשלוחים</a></li>
-          <li><a href="#">קטלוג דיגיטלי</a></li>
-          <li><a href="#">שאלות נפוצות</a></li>
+          <li><a href="#" data-he="פתיחת חשבון" data-en="Open Account">פתיחת חשבון</a></li>
+          <li><a href="#" data-he="תנאי B2B" data-en="B2B Terms">תנאי B2B</a></li>
+          <li><a href="#" data-he="לוגיסטיקה ומשלוחים" data-en="Logistics & Delivery">לוגיסטיקה ומשלוחים</a></li>
+          <li><a href="#" data-he="קטלוג דיגיטלי" data-en="Digital Catalogue">קטלוג דיגיטלי</a></li>
+          <li><a href="#" data-he="שאלות נפוצות" data-en="FAQ">שאלות נפוצות</a></li>
         </ul>
       </div>
       <div>
-        <p class="footer-col-head">יצירת קשר</p>
+        <p class="footer-col-head" data-he="יצירת קשר" data-en="Contact">יצירת קשר</p>
         <ul class="footer-links">
-          <li><a href="mailto:trade@decorit.co.il">trade@decorit.co.il</a></li>
-          <li><a href="tel:+97239999999">03-999-9999</a></li>
-          <li><a href="#">WhatsApp עסקי</a></li>
+          <li><a href="mailto:info@decorit.co.il">info@decorit.co.il</a></li>
+          <li><a href="tel:+97248419010">04-841-9010</a></li>
+          <li><a href="https://wa.me/97248419010" data-he="WhatsApp עסקי" data-en="Business WhatsApp">WhatsApp עסקי</a></li>
           <li><a href="#">LinkedIn</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Decorit. כל הזכויות שמורות.</span>
-      <span>מדיניות פרטיות · תנאי שימוש · נגישות</span>
+      <span data-he="© 2026 Decorit. כל הזכויות שמורות." data-en="© 2026 Decorit. All rights reserved.">© 2026 Decorit. כל הזכויות שמורות.</span>
+      <span data-he="מדיניות פרטיות · תנאי שימוש · נגישות" data-en="Privacy Policy · Terms of Use · Accessibility">מדיניות פרטיות · תנאי שימוש · נגישות</span>
     </div>
   </div>
 </footer>
 
 <script>
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 1600);
+    const form = e.target;
+    const lang = document.documentElement.lang;
+    const submitBtn = form.querySelector('[type=submit]');
+    const originalHTML = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="ph ph-circle-notch" style="animation:spin .8s linear infinite"></i> ' +
+      (lang === 'en' ? 'Sending...' : 'שולח...');
+
+    const data = new FormData(form);
+    data.append('_subject', 'בקשה חדשה למחירון Decorit');
+    data.append('_template', 'table');
+    data.append('_captcha', 'false');
+    data.append('_next', 'false');
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/info@decorit.co.il', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+      const json = await res.json();
+      if (json.success === 'true' || json.success === true) {
+        const toast = document.getElementById('toast');
+        toast.textContent = lang === 'en' ? 'Thank you! We\'ll be in touch soon 🙏' : 'תודה! נחזור אליכם בקרוב 🙏';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+        form.reset();
+      } else { throw new Error(); }
+    } catch {
+      alert(lang === 'en' ? 'Something went wrong. Please try again.' : 'שגיאה בשליחה. אנא נסו שוב.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalHTML;
+    }
   }
 
   function setLang(lang) {
@@ -735,6 +774,27 @@
     event.target.classList.add('active');
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+
+    // Swap all text nodes with data-he / data-en
+    document.querySelectorAll('[data-he][data-en]').forEach(el => {
+      const val = el.dataset[lang];
+      if (!val) return;
+      // Buttons / links: update only the text node (preserve child icon elements)
+      const hasIcon = el.querySelector('i');
+      if (hasIcon) {
+        const textNode = [...el.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+        if (textNode) textNode.textContent = ' ' + val;
+      } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = val;
+      } else {
+        el.innerHTML = val;
+      }
+    });
+
+    // Swap input placeholders
+    document.querySelectorAll('[data-ph-he][data-ph-en]').forEach(el => {
+      el.placeholder = lang === 'he' ? el.dataset.phHe : el.dataset.phEn;
+    });
   }
 </script>
 </body>
