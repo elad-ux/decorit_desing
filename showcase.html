@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decorit — Design System Showcase</title>
+<link rel="stylesheet" href="../styles.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+  body { margin: 0; background: var(--bg-app); }
+  .section { max-width: 1320px; margin: 0 auto; padding: 80px clamp(1rem,4vw,3rem); }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 32px; }
+  hr.divider { border: none; border-top: 1px solid var(--border-subtle); margin: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Button, IconButton, Badge, Card, Tag, Checkbox, Input, Select, ProductCard } = window.DecoritDesignSystem_d86daa;
+
+/* ── Brand Hero ─────────────────────────────────────────────────────── */
+function BrandHero() {
+  return (
+    <section style={{ background: "var(--surface-dark)", color: "var(--paper)", padding: "80px clamp(1rem,4vw,3rem)", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 28 }}>
+      <img src="../assets/logo/decorit-logo-1024.png" alt="Decorit" style={{ height: 120, filter: "invert(1)", mixBlendMode: "screen" }} />
+      <div style={{ maxWidth: 560 }}>
+        <p style={{ fontSize: 15, lineHeight: 1.7, color: "rgba(250,246,239,.72)", margin: 0 }}>
+          מערכת עיצוב לייבוא ושיווק טקסטיל לבית — וילונות, מצעים, מגבות, שטיחים, כריות ומפות.
+          מיועדת לחנויות ולמעצבים. דו-לשונית עברית/אנגלית, RTL-first.
+        </p>
+      </div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
+        {["117 טוקנים","10 רכיבים","2 UI Kits","Cinzel + Frank Ruhl Libre"].map((t,i)=>(
+          <span key={i} style={{ background: "rgba(250,246,239,.08)", border: "1px solid rgba(250,246,239,.15)", borderRadius: 9999, padding: "6px 14px", fontSize: 13, color: "rgba(250,246,239,.8)" }}>{t}</span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ── Colour Palette ─────────────────────────────────────────────────── */
+const SWATCHES = [
+  { label: "Paper", token: "--paper", hex: "#FBFAF8", dark: false },
+  { label: "Cream", token: "--cream", hex: "#F5F3EF", dark: false },
+  { label: "Sand", token: "--sand", hex: "#ECE9E3", dark: false },
+  { label: "Linen", token: "--linen", hex: "#E0DCD4", dark: false },
+  { label: "Taupe 300", token: "--taupe-300", hex: "#B3ACA0", dark: false },
+  { label: "Taupe 500", token: "--taupe-500", hex: "#6F685C", dark: true },
+  { label: "Espresso", token: "--espresso", hex: "#322E28", dark: true },
+  { label: "Ink", token: "--ink", hex: "#1E1B17", dark: true },
+  { label: "Clay 50", token: "--clay-50", hex: "#F2EEEB", dark: false },
+  { label: "Clay 400", token: "--clay-400", hex: "#B5957F", dark: true },
+  { label: "Clay 500 (accent)", token: "--clay-500", hex: "#9B7A66", dark: true },
+  { label: "Clay 600", token: "--clay-600", hex: "#836556", dark: true },
+  { label: "Sage 100", token: "--sage-100", hex: "#E8EAE2", dark: false },
+  { label: "Sage 500", token: "--sage-500", hex: "#76795F", dark: true },
+  { label: "Surface Dark", token: "--surface-dark", hex: "#26221C", dark: true },
+  { label: "Success", token: "--success-500", hex: "#5E7B52", dark: true },
+  { label: "Warning", token: "--warning-500", hex: "#C08A2D", dark: true },
+  { label: "Danger", token: "--danger-500", hex: "#A8473A", dark: true },
+];
+function ColourSection() {
+  return (
+    <section style={{ borderTop: "1px solid var(--border-subtle)" }}>
+      <div className="section">
+        <div className="section-label">צבעים</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(140px,1fr))", gap: 14 }}>
+          {SWATCHES.map(({ label, token, hex, dark }) => (
+            <div key={token} style={{ borderRadius: "var(--radius-lg)", overflow: "hidden", border: "1px solid var(--border-subtle)" }}>
+              <div style={{ height: 72, background: hex }} />
+              <div style={{ padding: "10px 12px", background: "var(--paper)" }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "var(--text-strong)" }}>{label}</div>
+                <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2, fontFamily: "var(--font-mono)" }}>{hex}</div>
+                <div style={{ fontSize: 11, color: "var(--text-faint)", marginTop: 1, fontFamily: "var(--font-mono)" }}>{token}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Typography ─────────────────────────────────────────────────────── */
+function TypeSection() {
+  const scale = [
+    { label: "Display / Hero", size: "4.5rem", font: "var(--font-display)", weight: 900, text: "טקסטיל שעושה בית" },
+    { label: "H1", size: "3rem", font: "var(--font-display)", weight: 700, text: "אוסף הבית 2026" },
+    { label: "H2", size: "2.25rem", font: "var(--font-display)", weight: 700, text: "מוצרים מובחרים" },
+    { label: "H3", size: "1.625rem", font: "var(--font-display)", weight: 600, text: "וילון פשתן מילאנו" },
+    { label: "H4", size: "1.25rem", font: "var(--font-body)", weight: 600, text: "קטגוריות ומחלקות" },
+    { label: "Body LG", size: "1.125rem", font: "var(--font-body)", weight: 400, text: "ייבוא ושיווק טקסטיל לבית בסטנדרט בינלאומי." },
+    { label: "Body", size: "1rem", font: "var(--font-body)", weight: 400, text: "מחירון סיטונאי לחנויות ולמעצבי פנים — זמינות מלאי בזמן אמת, הזמנה בכמות, משלוח לכל הארץ." },
+    { label: "Small", size: "0.875rem", font: "var(--font-body)", weight: 400, text: "מחיר ליחידה · כולל מע״מ · מינימום הזמנה 5 יח׳" },
+    { label: "Wordmark (Cinzel)", size: "2rem", font: "var(--font-logo)", weight: 600, text: "DECORIT", letterSpacing: ".14em" },
+    { label: "Overline", size: "0.75rem", font: "var(--font-body)", weight: 700, text: "DESIGNING YOUR DREAMS", letterSpacing: ".22em", textTransform: "uppercase", color: "var(--text-muted)" },
+  ];
+  return (
+    <section style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--bg-subtle)" }}>
+      <div className="section">
+        <div className="section-label">טיפוגרפיה</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          {scale.map(({ label, size, font, weight, text, letterSpacing, textTransform, color }, i) => (
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "120px 1fr", gap: 24, alignItems: "baseline", padding: "20px 0", borderBottom: "1px solid var(--border-subtle)" }}>
+              <span style={{ fontSize: 11, fontWeight: 600, color: "var(--text-faint)", letterSpacing: ".06em", textTransform: "uppercase", paddingTop: 4 }}>{label}</span>
+              <span style={{ fontSize: size, fontFamily: font, fontWeight: weight, lineHeight: 1.15, color: color || "var(--text-strong)", letterSpacing: letterSpacing || "normal", textTransform: textTransform || "none" }}>{text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Components ─────────────────────────────────────────────────────── */
+function Row({ label, children }) {
+  return (
+    <div style={{ marginBottom: 36 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 16 }}>{label}</div>
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>{children}</div>
+    </div>
+  );
+}
+function ComponentsSection() {
+  const [check, setCheck] = React.useState(false);
+  return (
+    <section style={{ borderTop: "1px solid var(--border-subtle)" }}>
+      <div className="section">
+        <div className="section-label">רכיבים</div>
+
+        <Row label="Button — Variants">
+          <Button variant="primary" size="lg">פתיחת חשבון סוחר</Button>
+          <Button variant="secondary" size="lg">עיון בקטלוג</Button>
+          <Button variant="ghost" size="lg">ביטול</Button>
+          <Button variant="primary" size="lg" disabled>מושבת</Button>
+        </Row>
+        <Row label="Button — Sizes">
+          <Button variant="primary" size="sm">קטן</Button>
+          <Button variant="primary" size="md">בינוני</Button>
+          <Button variant="primary" size="lg">גדול</Button>
+        </Row>
+        <Row label="Badge — Tones">
+          <Badge tone="accent">חדש</Badge>
+          <Badge tone="warning">מבצע</Badge>
+          <Badge tone="danger">נגמר</Badge>
+          <Badge tone="success">במלאי</Badge>
+          <Badge>כללי</Badge>
+        </Row>
+        <Row label="Tag">
+          <Tag>וילונות</Tag>
+          <Tag>מצעים</Tag>
+          <Tag>מגבות</Tag>
+          <Tag>שטיחים</Tag>
+          <Tag>כריות</Tag>
+        </Row>
+        <Row label="Input">
+          <div style={{ width: 260 }}><Input placeholder="שם מלא" /></div>
+          <div style={{ width: 260 }}><Input placeholder="חיפוש מוצרים..." /></div>
+          <div style={{ width: 180 }}><Input placeholder="₪" type="number" /></div>
+        </Row>
+        <Row label="Checkbox">
+          <Checkbox label="אני מאשר/ת קבלת מחירון ועדכונים" checked={check} onChange={() => setCheck(c=>!c)} />
+        </Row>
+        <Row label="IconButton">
+          <IconButton label="חיפוש" variant="ghost"><i className="ph ph-magnifying-glass" /></IconButton>
+          <IconButton label="עגלה" variant="ghost"><i className="ph ph-shopping-bag" /></IconButton>
+          <IconButton label="חשבון" variant="ghost"><i className="ph ph-user-circle" /></IconButton>
+          <IconButton label="מועדפים" variant="ghost"><i className="ph ph-heart" /></IconButton>
+        </Row>
+      </div>
+    </section>
+  );
+}
+
+/* ── Product Cards ───────────────────────────────────────────────────── */
+const PH = (id) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=500&q=75`;
+const PRODUCTS = [
+  { img: "photo-1567225557594-88d73e55f2cb", cat: "וילונות", name: "וילון פשתן מילאנו", price: 89, unit: "למ׳", badge: { label: "חדש", tone: "accent" } },
+  { img: "photo-1540518614846-7eded433c457", cat: "מצעים", name: "סט מצעים פרסיקו", price: 249, unit: "לסט", badge: null },
+  { img: "photo-1620626011761-996317b8d101", cat: "מגבות", name: "מגבת כותנה אגאם", price: 39, unit: "ליח׳", badge: { label: "מבצע", tone: "warning" } },
+  { img: "photo-1600607687939-ce8a6c25118c", cat: "שטיחים", name: "שטיח צמר נורדי", price: 690, unit: "ליח׳", badge: null },
+];
+function ProductSection() {
+  const [added, setAdded] = React.useState(null);
+  return (
+    <section style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--bg-subtle)" }}>
+      <div className="section">
+        <div className="section-label">כרטיס מוצר</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 20 }}>
+          {PRODUCTS.map((p,i) => (
+            <div key={i} onClick={() => setAdded(p.name)} style={{ cursor: "pointer" }}>
+              <ProductCard image={PH(p.img)} category={p.cat} name={p.name} price={p.price} unit={p.unit} badge={p.badge} />
+            </div>
+          ))}
+        </div>
+        {added && (
+          <div style={{ marginTop: 16, fontSize: 14, color: "var(--accent)", fontWeight: 600 }}>
+            <i className="ph-fill ph-check-circle" style={{ marginInlineEnd: 6 }} />
+            {added} נוסף לעגלה
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/* ── Mini Hero Preview ──────────────────────────────────────────────── */
+function PatternSection() {
+  return (
+    <section style={{ borderTop: "1px solid var(--border-subtle)" }}>
+      <div style={{ background: "var(--taupe-300)", position: "relative", minHeight: 340, display: "flex", alignItems: "center", overflow: "hidden" }}>
+        <img src={`https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1600&q=75`} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(38,34,28,.82) 0%, rgba(38,34,28,.38) 100%)" }} />
+        <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "0 clamp(1rem,4vw,3rem)", width: "100%" }}>
+          <div className="section-label" style={{ color: "#D8C7BE", marginBottom: 12 }}>דפוס Hero — תצוגה מקדימה</div>
+          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px,5vw,60px)", color: "#FBFAF8", margin: "0 0 16px", maxWidth: 520 }}>טקסטיל שעושה בית</h2>
+          <p style={{ fontSize: 18, color: "rgba(250,246,239,.85)", marginBottom: 24, maxWidth: 420 }}>וילונות, מצעים, מגבות ושטיחים מהמותגים המובילים — לחנויות ולמעצבים.</p>
+          <div style={{ display: "flex", gap: 12 }}>
+            <Button variant="primary" size="lg">עיון בקטלוג</Button>
+            <Button variant="secondary" size="lg" style={{ background: "transparent", color: "#FBFAF8", borderColor: "rgba(250,246,239,.5)" }}>כניסת סוחרים</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Token Reference ────────────────────────────────────────────────── */
+function TokenRef() {
+  const groups = [
+    { title: "מרווחים", items: [["--space-1","4px"],["--space-2","8px"],["--space-3","12px"],["--space-4","16px"],["--space-5","24px"],["--space-6","32px"],["--space-8","48px"],["--space-10","80px"],["--space-12","112px"],["--gutter","clamp(1rem,4vw,3rem)"]] },
+    { title: "רדיוסים", items: [["--radius-sm","4px"],["--radius-md","8px"],["--radius-lg","12px"],["--radius-xl","20px"],["--radius-pill","9999px"]] },
+    { title: "גופנים", items: [["--font-logo","Cinzel"],["--font-display","Frank Ruhl Libre"],["--font-body","Assistant"],["--font-num","Heebo"]] },
+    { title: "מכולות", items: [["--container-sm","640px"],["--container-md","880px"],["--container-lg","1140px"],["--container-xl","1320px"]] },
+  ];
+  return (
+    <section style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--bg-subtle)" }}>
+      <div className="section">
+        <div className="section-label">טוקני עיצוב</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 32 }}>
+          {groups.map(({ title, items }) => (
+            <div key={title}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text-strong)", marginBottom: 12 }}>{title}</div>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <tbody>
+                  {items.map(([k, v]) => (
+                    <tr key={k} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                      <td style={{ padding: "8px 0", fontSize: 13, fontFamily: "var(--font-mono)", color: "var(--accent)" }}>{k}</td>
+                      <td style={{ padding: "8px 0", fontSize: 13, fontFamily: "var(--font-mono)", color: "var(--text-muted)", textAlign: "end" }}>{v}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Showcase Footer ────────────────────────────────────────────────── */
+function ShowcaseFooter() {
+  return (
+    <footer style={{ background: "var(--ink)", color: "rgba(250,246,239,.6)", textAlign: "center", padding: "32px clamp(1rem,4vw,3rem)" }}>
+      <img src="../assets/logo/decorit-logo-1024.png" alt="Decorit" style={{ height: 60, filter: "invert(1)", mixBlendMode: "screen", marginBottom: 14, display: "block", margin: "0 auto 14px" }} />
+      <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6 }}>
+        Decorit Design System · <span dir="ltr">v1.0 · June 2026</span><br />
+        <a href="README.md" style={{ color: "rgba(250,246,239,.5)", textDecoration: "underline", fontSize: 13 }}>Developer README →</a>
+      </p>
+    </footer>
+  );
+}
+
+/* ── App ─────────────────────────────────────────────────────────────── */
+function Showcase() {
+  return (
+    <>
+      <BrandHero />
+      <ColourSection />
+      <TypeSection />
+      <ComponentsSection />
+      <ProductSection />
+      <PatternSection />
+      <TokenRef />
+      <ShowcaseFooter />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Showcase />);
+</script>
+</body>
+</html>
